@@ -3,7 +3,7 @@ title: "v0とGPTでポートフォリオサイトを爆速で作成し、Vercel�
 emoji: "🙆"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["v0", "GPT", "Vercel", "生成AI"]
-published: false
+published: true
 ---
 
 ポートフォリオサイトを作るのって、一見時間がかかりそうだと思いませんか？しかし、今回はGPTの助けを借りて、わずか数十分でポートフォリオサイトを作成し、Vercelにデプロイする方法をご紹介します。この方法は、エンジニアとしての自分を魅力的にアピールするためのサイトを効率的に作りたい人にぴったりです。
@@ -93,12 +93,13 @@ ChatGPT：1ページに情報を集約したポートフォリオサイト（シ
 ```
 
 # ステップ3: コンテンツを英語に翻訳する
-
-v０では主に英語の方が精度が良いので、ステップ２で出てきた提案を修正したのちに翻訳します。これはGPTを使ってもいいですし、DeepLなどの翻訳サイトでも良いかと思います。私はサイトの色の構成を指定したいため、こちらのサイト（[https://colorhunt.co/）から使いたい色を探してきて、この色を使ってもらうように修正しました。修正し、翻訳した文章が以下になります。](https://colorhunt.co/）から使いたい色を探してきて、この色を使ってもらうように修正しました。修正し、翻訳した文章が以下になります。)
-
+v0では英語の方が精度が高いため、ステップ2で得た提案を修正した後に英語に翻訳します。これはGPTを使っても良いですし、DeepLなどの翻訳サイトを利用しても良いでしょう。サイトの色の構成も指定したいため、[Color Hunt](https://colorhunt.co/)などで使いたい色を選び、その色を反映させるように修正します。私は以下のカラーコードを使用しました。
+[#F5F5F5 #48CFCB #229799 #424242](https://colorhunt.co/palette/f5f5f548cfcb229799424242)
+![](/images/v0-gpt-portfolio-20241017/colorhunt.png)
+最終的に以下のような文章になります。
 ```
-Overall design direction Color scheme: Simple, clean color scheme based on two or three main colors and accent colors
-#F5F5F5 #48CFCB #229799 #424242 Typography: Headlines should be bold and stand out, while body text should be in a simple, easy-to-read font. Responsive: Layout that is easy to view on both PCs and mobile devices. Section Structure and Content Header
+Overall design direction Color scheme: Simple, clean color scheme based on two or three main colors and accent colors(#F5F5F5 #48CFCB #229799 #424242)
+Typography: Headlines should be bold and stand out, while body text should be in a simple, easy-to-read font. Responsive: Layout that is easy to view on both PCs and mobile devices. Section Structure and Content Header
 Navigation bar: Fixed at the top of the page. Links to each section (“About Me,” “Projects,” “Skills,” “Achievements,” “Contact,” and “Resume”). SNS icons are placed on the far right to direct visitors to external links. Logo: Display your name or logo in the upper left corner. Hero Section
 Part of your introduction: A simple, catchy tagline (e.g., “I'm [Your Name], a Software Engineer Specializing in [Your Specialty]”). Background image or video: an eye-catching design that reflects your personality. Use a background with few effects and not too obvious. Action Buttons: Place “Contact Me” and “View Resume” buttons for quick access. Self-introduction section (About Me)
 Profile photo: Displayed as a round icon and placed next to the introductory text. Brief self-introduction: A few lines of self-introductory text. Provide a brief description of your strengths and skill set. Social networking icons: Icons for GitHub, LinkedIn, Twitter, etc. for quick access. Projects section
@@ -112,7 +113,7 @@ Downloadable Resume (Resume Download): Place a “Download Resume” button as p
 # ステップ4: v0でデザインを作成する
 次に、v0（[https://v0.dev](https://v0.dev)）にアクセスして、画面を作成します。
 ![](/images/v0-gpt-portfolio-20241017/v0-top.png)
-ask v0 questionに先ほどの翻訳した文章を入力し、送信します。すると、v0が自動でポートフォリオサイトのデザインを作成してくれます。
+ask v0 questionにステップ３で翻訳した文章を入力し、送信します。すると、v0が自動でポートフォリオサイトのデザインを作成してくれます。
 ![](/images/v0-gpt-portfolio-20241017/v0-second.png)
 画面を作成すると以下のようなコードを作成してくれます。
 :::details portfolio.tsx
@@ -378,6 +379,42 @@ npm run dev
 ```bash: terminal
 npm run build
 ```
+
+:::details 私は以下のようなエラーが発生しました。
+エラー内容
+```bash: terminal
+Failed to compile.
+
+./components/portfolio.tsx
+45:64  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+72:21  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+
+./components/ui/input.tsx
+5:18  Error: An interface declaring no members is equivalent to its supertype.  @typescript-eslint/no-empty-object-type
+
+./components/ui/textarea.tsx
+5:18  Error: An interface declaring no members is equivalent to its supertype.  @typescript-eslint/no-empty-object-type
+```
+ダッシュがエスケープされていないためエラーが発生しているようです。以下のように修正します。
+```diff tsx: portfolio.tsx
+- I'm
++ I&apos;m
+
+- Here's
++ Here&apos;s
+```
+また`interface`のエラーは以下のように修正します。
+```diff tsx: input.tsx
+- export interface InputProps
+-   extends React.InputHTMLAttributes<HTMLInputElement> {}
++ export type InputProps = React.InputHTMLAttributes<HTMLInputElement>
+```
+```diff tsx: textarea.tsx
+- export interface TextareaProps
+-   extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {}
++ export type TextareaProps = React.TextareaHTMLAttributes<HTMLTextAreaElement>
+```
+:::
 
 # ステップ6: GitHubにプッシュする
 プロジェクトがローカルで問題なく動作することを確認したら、GitHubリポジトリを作成してコードをアップロードします。これにより、バージョン管理ができ、Vercelへのデプロイがスムーズになります。
