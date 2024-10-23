@@ -3,7 +3,7 @@ title: "GitHub ActionsでのPermissionエラー解決ガイド"
 emoji: "⚠"
 type: "tech"
 topics: ["GitHub Actions","CI/CD","Git"]
-published: false
+published: true
 ---
 
 ## TL;DR
