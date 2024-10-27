@@ -13,7 +13,7 @@ jobs:
       - name: Check out the code
         uses: actions/checkout@v2
         with:
-          fetch-depth: 2  # 直近の2つのコミットをフェッチして差分を比較できるようにする
+          fetch-depth: 2  # 直近の2つのコミットを取得して差分を比較
 
       - name: Set up Python
         uses: actions/setup-python@v2
@@ -23,13 +23,11 @@ jobs:
       - name: Install dependencies
         run: pip install requests requests-oauthlib
 
-      - name: Extract titles and URLs from updated articles
+      - name: Extract titles, URLs, and topics from updated articles
         id: extract_posts
         run: |
-          # articlesディレクトリ内で変更された.mdファイルのリストを取得
           UPDATED_FILES=$(git diff --name-only HEAD^ HEAD | grep '^articles/.*\.md')
           
-          # 各ファイルに対してタイトルとリンクを抽出
           for FILE in $UPDATED_FILES; do
             # ファイル名から拡張子.mdを除去してpage-titleを生成
             PAGE_TITLE=$(basename "$FILE" .md)
@@ -38,11 +36,13 @@ jobs:
             # titleのフィールドを抽出
             TITLE=$(grep '^title:' "$FILE" | sed 's/title: "\(.*\)"/\1/')
 
-            # 投稿内容のフォーマット
-            TWEET_CONTENT="${TITLE}という記事を作成しました！\n${URL}"
+            # topicsのフィールドを抽出
+            TOPICS=$(grep '^topics:' "$FILE" | sed 's/topics: \[\(.*\)\]/\1/' | sed 's/"//g')
 
-            # 各投稿内容を保存（エクスポート）
-            echo "TWEET_CONTENT_$PAGE_TITLE=$TWEET_CONTENT" >> $GITHUB_ENV
+            # 投稿内容とURL、トピックを環境変数に設定
+            echo "TWEET_CONTENT_$PAGE_TITLE=${TITLE}という記事を作成しました！" >> $GITHUB_ENV
+            echo "URL_$PAGE_TITLE=$URL" >> $GITHUB_ENV
+            echo "TOPICS_$PAGE_TITLE=$TOPICS" >> $GITHUB_ENV
           done
 
       - name: Run Python script to post to X
