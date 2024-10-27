@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: Check out the code
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 2  # 直近の2つのコミットをフェッチして差分を比較できるようにする
 
       - name: Set up Python
         uses: actions/setup-python@v2
@@ -25,7 +27,7 @@ jobs:
         id: extract_posts
         run: |
           # articlesディレクトリ内で変更された.mdファイルのリストを取得
-          UPDATED_FILES=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep '^articles/.*\.md')
+          UPDATED_FILES=$(git diff --name-only HEAD^ HEAD | grep '^articles/.*\.md')
           
           # 各ファイルに対してタイトルとリンクを抽出
           for FILE in $UPDATED_FILES; do
