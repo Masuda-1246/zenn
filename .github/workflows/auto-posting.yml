@@ -3,7 +3,7 @@ name: Post updated articles to X
 on:
   push:
     paths:
-      - "articles/*.md"  # articlesディレクトリ内の.mdファイルの変更をトリガー
+      - "articles/*.md"  # Triggers on changes to .md files in articles directory
 
 jobs:
   post_to_x:
@@ -24,22 +24,22 @@ jobs:
       - name: Extract titles and URLs from updated articles
         id: extract_posts
         run: |
-          # articlesディレクトリ内で変更された.mdファイルのリストを取得
+          # Get list of updated .md files in the articles directory
           UPDATED_FILES=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep '^articles/.*\.md')
           
-          # 各ファイルに対してタイトルとリンクを抽出
+          # Extract title and URL for each updated file
           for FILE in $UPDATED_FILES; do
-            # ファイル名から拡張子.mdを除去してpage-titleを生成
+            # Remove .md extension from filename to get page-title
             PAGE_TITLE=$(basename "$FILE" .md)
             URL="${{ secrets.BASE_URL }}/$PAGE_TITLE"
             
-            # titleのフィールドを抽出
+            # Extract title field from file content
             TITLE=$(grep '^title:' "$FILE" | sed 's/title: "\(.*\)"/\1/')
 
-            # 投稿内容のフォーマット
+            # Format the tweet content
             TWEET_CONTENT="${TITLE}という記事を作成しました！\n${URL}"
 
-            # 各投稿内容を保存（エクスポート）
+            # Save each tweet content as an environment variable
             echo "TWEET_CONTENT_$PAGE_TITLE=$TWEET_CONTENT" >> $GITHUB_ENV
           done
 
@@ -50,12 +50,12 @@ jobs:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           ACCESS_TOKEN_SECRET: ${{ secrets.ACCESS_TOKEN_SECRET }}
         run: |
-          python - <<EOF
+          python <<EOF
 import os
 import requests
 from requests_oauthlib import OAuth1
 
-# OAuth 1.0a認証の設定
+# Set up OAuth1 authentication
 auth = OAuth1(
     os.getenv("API_KEY"),
     os.getenv("API_SECRET_KEY"),
@@ -63,18 +63,15 @@ auth = OAuth1(
     os.getenv("ACCESS_TOKEN_SECRET")
 )
 
-# 設定した環境変数から各投稿内容を取得してツイート
+# Post each tweet content found in environment variables
 for key, value in os.environ.items():
     if key.startswith("TWEET_CONTENT_"):
         tweet_content = value
-        # APIエンドポイント
         url = "https://api.twitter.com/2/tweets"
         payload = {"text": tweet_content}
 
-        # POSTリクエストを送信
         response = requests.post(url, auth=auth, json=payload)
 
-        # 結果を確認
         if response.status_code == 201:
             print(f"Successfully posted to X: {tweet_content}")
         else:
