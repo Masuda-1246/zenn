@@ -7,7 +7,7 @@ published: true
 ---
 ## はじめに
 皆さんはマインドマップツール「Mapify」を使ったことがありますか？Mapifyは、プロンプトやPDF、YouTube動画、URLを入力するだけで瞬時にマインドマップを作成してくれます。内容が構造化されていて理解するのに、とても便利です。特に、論文や海外のサイトの内容を理解する際に、Mapifyをよく利用しています。
-https://mapify.so/?ref=yousukemasuda-wczxr2
+https://mapify.so/ja/?ref=yousukemasuda-wczxr2
 無料で使えるのですが、一つだけ問題があります。それは、Mapifyで作成したマインドマップは数日間しか保存することができないのです（課金すればいいのですが...）。
 Xmindファイルは保存することができるのですが、普段からXmindはあまり使っていないので、別のファイル形式に変換する方法を探していました。
 そこで、Pythonを使って、**XMindファイルをMarkdown形式**（Markmap用）**とMermaid記法形式**（Mermaid.js用）に変換するスクリプトを作成しました！この記事では、そのスクリプトの実装方法や活用例について解説します。
