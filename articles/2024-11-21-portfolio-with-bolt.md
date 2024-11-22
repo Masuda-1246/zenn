@@ -3,7 +3,7 @@ title: "boltを使ってAI駆動開発"
 emoji: "⛳"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["bolt", "AI", "react", "AI駆動開発"]
-published: false
+published: true
 publication_name: "nislab"
 ---
 ## TL;DR

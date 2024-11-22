@@ -3,7 +3,7 @@ title: "AI-driven development with bolt"
 emoji: "⛳"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["bolt", "AI", "react", "ai driven"]
-published: false
+published: true
 publication_name: "nislab"
 ---
 ## TL;DR
