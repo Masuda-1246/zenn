@@ -3,7 +3,7 @@ title: "HumanLayer触ってみた~Human In The Loopのプラットフォーム~"
 emoji: "👏"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["humanlayer", "AI", "NLP", "hitl"]
-published: false
+published: true
 publication_name: "nislab"
 ---
 
@@ -11,6 +11,9 @@ publication_name: "nislab"
 HumanLayer(Human In The Loopの初？のプラットフォーム)の簡単なチュートリアルを紹介します。
 以下のような動画のような感じで、AIエージェントが人間の承認を得るプロセスを体験できます。
 ![](/images/2024-11-29-humanlayer-1/demo.gif)
+
+## 私たちの研究室
+https://nisk.doshisha.ac.jp/
 
 # HumanLayerとは？
 ## 概要

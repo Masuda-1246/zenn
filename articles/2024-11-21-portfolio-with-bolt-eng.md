@@ -11,7 +11,10 @@ publication_name: "nislab"
 This article explains the steps to build a portfolio site with almost no code. Below is an example of the completed image.
 https://masuda-yosuke.vercel.app/
 
-## 使用するツール
+## Our Research Lab
+https://nisk.doshisha.ac.jp/
+
+## Tools Used
 - GitHub: Code hosting and version control
 - bolt.new: AI-powered development platform
 - Vercel: hosting service for easy application deployment

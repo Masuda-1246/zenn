@@ -11,6 +11,9 @@ publication_name: "nislab"
 本記事では、ほぼノーコードでポートフォリオサイトを構築する手順を解説します。以下は完成イメージの例です。
 https://masuda-yosuke.vercel.app/
 
+## 私たちの研究室
+https://nisk.doshisha.ac.jp/
+
 ## 使用するツール
 - GitHub: コードのホスティングとバージョン管理
 - bolt.new: AIを活用した開発プラットフォーム
