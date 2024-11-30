@@ -3,7 +3,7 @@ title: "ClaudeのMCP(Model Context Protocol)をMacで触ってみた"
 emoji: "📌"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["claude", "mcp", "ai", "mac", "llm"]
-published: false
+published: true
 publication_name: "nislab"
 ---
 
