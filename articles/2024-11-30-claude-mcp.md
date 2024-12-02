@@ -11,7 +11,7 @@ publication_name: "nislab"
 Model Context Protocol (MCP)を使用してMac上でBrave SearchとFilesystemに接続する方法を紹介します。
 MCPはAIアシスタントとデータソースを簡単に接続できる新しいプロトコルで、Brave SearchやMacのファイルシステムとの連携が可能になります。
 
-## 私たちの研究室
+## 私たちの研究室(NISLab)
 https://nisk.doshisha.ac.jp/
 
 ## Model Context Protocolとは

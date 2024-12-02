@@ -12,7 +12,7 @@ HumanLayer(Human In The Loopの初？のプラットフォーム)の簡単なチ
 以下のような動画のような感じで、AIエージェントが人間の承認を得るプロセスを体験できます。
 ![](/images/2024-11-29-humanlayer-1/demo.gif)
 
-## 私たちの研究室
+## 私たちの研究室(NISLab)
 https://nisk.doshisha.ac.jp/
 
 # HumanLayerとは？
