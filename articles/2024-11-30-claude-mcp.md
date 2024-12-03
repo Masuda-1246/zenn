@@ -14,6 +14,9 @@ MCPはAIアシスタントとデータソースを簡単に接続できる新し
 ## 私たちの研究室(NISLab)
 https://nisk.doshisha.ac.jp/
 
+## アドベントカレンダー  1日目~
+https://nislab-advent-calendar-2024-12.vercel.app/
+
 ## Model Context Protocolとは
 Model Context Protocol (MCP)は、Anthropicが2024年11月25日に発表した新しいオープンスタンダードです。このプロトコルは、AIアシスタントと様々なデータソースを簡単に接続することを可能にします。MCPを使用することで、AIシステムは必要なデータにアクセスしやすくなり、より関連性の高い応答を生成できるようになります。
 
