@@ -4,6 +4,7 @@ emoji: "😎"
 type: "idea" # tech: 技術記事 / idea: アイデア
 topics: ["AI", "ツール", "gpt", "claude",  "openai"]
 published: false
+publication_name: "nislab"
 ---
 ## TL;DR
 2024年に僕が使ってきたAI時代に役立つツールを紹介します。
