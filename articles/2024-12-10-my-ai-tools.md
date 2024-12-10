@@ -3,7 +3,7 @@ title: "2024年AIツール総集編：効率化・生産性UPを実現したAI�
 emoji: "😎"
 type: "idea" # tech: 技術記事 / idea: アイデア
 topics: ["AI", "ツール", "gpt", "claude",  "openai"]
-published: false
+published: true
 publication_name: "nislab"
 ---
 ## TL;DR
