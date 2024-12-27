@@ -3,7 +3,7 @@ title: "Terraformでのaws_default_route_tableとaws_route_tableの違いと選�
 emoji: "🗂"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["aws", "terraform", "network", "vpc", "iac"]
-published: false
+published: true
 ---
 
 ## TL;DR
